@@ -15,10 +15,11 @@ import xml.etree.ElementTree as Xml
 
 
 CHOICE_TYPE = {
-    'single': 'PT_SINGLE_SELECT',
-    'multi': 'PT_MULTI_SELECT',
-    'checkbox': 'PT_CHECKBOX',
-    'radio': 'PT_RADIO',
+    'input_textbox': 'ET_TEXT_BOX',
+    'numbered_list': 'ET_ORDERED_LIST',
+    'bullet_items_list': 'ET_UNORDERED_LIST',
+    'formatted_html': 'ET_FORMATTED_HTML',
+    'formatted_hidden_html': 'ET_FORMATTED_HIDDEN_HTML',
 }
 
 REQUIRED = [
@@ -80,7 +81,7 @@ def cascade_choice_parameter(parser, xml_parent, data):
             return ['foo', 'bar']
     """
 
-    element_name = 'org.biouno.unochoice.CascadeChoiceParameter'
+    element_name = 'org.biouno.unochoice.DynamicReferenceParameter'
 
     section = Xml.SubElement(xml_parent, element_name)
     scripts = Xml.SubElement(section, 'script', {'class': 'org.biouno.unochoice.model.GroovyScript'})
@@ -102,6 +103,6 @@ def cascade_choice_parameter(parser, xml_parent, data):
 
     _add_script(scripts, "secureFallbackScript", data.get("fallback-script", ""))
 
-    _add_element(section, 'choiceType', CHOICE_TYPE[data.get('choice-type', 'single')])
+    _add_element(section, 'choiceType', CHOICE_TYPE[data.get('choice-type', 'input_textbox')])
     # added calculated fields
     _add_element(section, 'randomName', _unique_string(data['project'], data['name']))
