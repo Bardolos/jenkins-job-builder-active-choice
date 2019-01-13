@@ -97,9 +97,15 @@ def active_reactive_choice_parameter(parser, xml_parent, data):
         _add_element(section, tag, data.get(name, default))
 
     try:
-        _add_script(scripts, "secureScript", data["script"])
+        script_file = data.get("script-file", "")
+        contents = ""
+        if not script_file:
+            contents = data["script"]
+        else:
+            contents = open(script_file, "r").read()
+        _add_script(scripts, "secureScript", contents)
     except KeyError:
-        raise Exception("missing mandatory argument script")
+        raise Exception("missing mandatory argument script or script-file (check if file exists)")
 
     _add_script(scripts, "secureFallbackScript", data.get("fallback-script", ""))
 
