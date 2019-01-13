@@ -57,8 +57,8 @@ def _unique_string(project, name):
     return 'choice-param-{0}-{1}'.format(project, name).lower()
 
 
-def cascade_choice_parameter(parser, xml_parent, data):
-    """yaml: cascade-choice
+def active_reactive_choice_parameter(parser, xml_parent, data):
+    """yaml: active-reactive-choice
     Creates an active choice parameter
     Requires the Jenkins :jenkins-wiki:`Active Choices Plugin <Active+Choices+Plugin>`.
 
@@ -74,8 +74,8 @@ def cascade_choice_parameter(parser, xml_parent, data):
 
     .. code-block:: yaml
 
-        - cascade-choice:
-          name: CASCADE_CHOICE
+        - active-reactive-choice:
+          name: DYNAMIC_CHOICE
           project: test_project
           script: |
             return ['foo', 'bar']
