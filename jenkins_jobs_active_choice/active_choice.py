@@ -34,6 +34,7 @@ OPTIONAL = [
     ('visible-item-count', 'visibleItemCount', 1),
     ('reference', 'referencedParameters', ''),
     ('filterable', 'filterable', False),
+    ('omit-value-field', 'omitValueField', False),
 ]
 
 
